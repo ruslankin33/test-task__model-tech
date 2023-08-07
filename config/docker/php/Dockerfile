@@ -1,6 +1,8 @@
 FROM php:8.1-fpm
 
-RUN pecl install apcu apfd && docker-php-ext-enable apfd
+RUN pecl install apcu apfd xdebug && docker-php-ext-enable apfd xdebug
+
+COPY ./xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 
 RUN apt-get update && apt-get install -y \
   libicu-dev \
